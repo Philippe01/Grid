@@ -1,0 +1,75 @@
+// Number of grids / grid columns.
+$grids: (12) !default;
+
+// Breakpoints
+$BP-large: 1025px !default;
+$BP-medium: 770px !default;
+$BP-small: 600px !default;
+
+// Gutter width
+$gutter-width: 0.5% !default;
+
+// Moblie First
+$moblie_first: true !default;
+
+// Push and pull
+//
+// This will give you offsets left and right.
+$offsets: true !default;
+
+// Automatic grid
+//
+// This will do some common grid width changes automatically. Use class '.auto-grid' on the '.row'
+$auto-grid: true !default;
+
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+.section {
+  margin: 0 auto;
+  width: 90%;
+
+  @media (max-width: $BP-large) {
+    width: 95%;
+  }
+  @media (max-width: $BP-small) {
+    width: 98%;
+  }
+}
+
+.section .row {
+  margin-left: (-1 * $gutter-width / 2);
+  margin-right: (-1 * $gutter-width / 2);
+}
+
+.row {
+  .col {
+    float: left;
+    padding: 0 $gutter-width / 2;
+  }
+
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
+
+
+@import "components/_mixin.scss";
+
+
+@if $moblie_first{
+
+  @import "components/_moblie.scss";
+
+} @else {
+
+  @import "components/_desktop.scss";
+
+}

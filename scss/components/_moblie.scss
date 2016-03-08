@@ -1,0 +1,210 @@
+// Moblie First layout
+
+
+// Moblie
+$Moblie: ();
+
+.row {
+  @each $grid in $grids {
+    @for $i from 1 through $grid {
+      $width: $i / $grid;
+
+      @include the_extends($width, $Moblie, null);
+
+      @include the_classes($i, $grid, $width, null);
+
+    }
+  }
+}
+// Moblie end
+
+
+// Small
+@media (min-width: $BP-small) {
+
+  // Auto Desktop
+  @if $auto-grid {
+    $small_Auto: ();
+
+    .auto-grid {
+      @each $grid in $grids {
+        @for $i from 1 through $grid {
+          $width: $i / $grid;
+
+          @if 1 / 4 == $i / $grid {
+            @if contains($small_Auto, $width) == false {
+              %a-100-col-#{$width} {
+                width: 100%;
+              }
+              $small_Auto: append( $small_Auto, $width );
+            }
+            .col-#{$i}-#{$grid} {
+              @extend %a-100-col-#{$width};
+            }
+          }
+
+        }
+      }
+    }
+  }
+  // Auto Desktop end
+
+  .row {
+    $small: ();
+
+    @each $grid in $grids {
+      @for $i from 1 through $grid {
+        $width: $i / $grid;
+
+        @include the_extends($width, $small, "s" );
+
+        @include the_classes($i, $grid, $width, "s");
+
+      }
+    }
+
+    @if $offsets {
+      .col-push-reset, .col-pull-reset{
+          margin-left: none;
+      }
+    }
+
+  }
+}
+// Small end
+
+
+
+
+// Medium
+@media (min-width: $BP-medium) {
+
+  // Auto Desktop
+  @if $auto-grid {
+    $medium_Auto: ();
+
+    .auto-grid {
+      @each $grid in $grids {
+        @for $i from 1 through $grid {
+          $width: $i / $grid;
+
+          @if 1 / 3 == $i / $grid {
+            @if contains($medium_Auto, $width) == false {
+              %a-100-col-#{$width} {
+                width: 100%;
+              }
+              $medium_Auto: append($medium_Auto, $width);
+            }
+            .col-#{$i}-#{$grid} {
+              @extend %a-100-col-#{$width};
+            }
+          }
+
+          @if 1 / 4 == $i / $grid {
+            @if contains($medium_Auto, $width) == false {
+              %a-50-col-#{$width} {
+                width: 50%;
+              }
+              $medium_Auto: append($medium_Auto, $width);
+            }
+            .col-#{$i}-#{$grid} {
+              @extend %a-50-col-#{$width};
+            }
+          }
+
+        }
+      }
+    }
+  }
+  // Auto Desktop end
+
+  .row {
+    $medium: ();
+
+    @each $grid in $grids {
+      @for $i from 1 through $grid {
+        $width: $i / $grid;
+
+        @include the_extends($width, $medium, "m" );
+
+        @include the_classes($i, $grid, $width, "m");
+
+      }
+    }
+
+    @if $offsets {
+      .col-m-push-reset, .col-m-pull-reset {
+        margin-left: none;
+      }
+    }
+
+  }
+}
+// Medium end
+
+
+
+// Large Breakpoint
+@media (min-width: $BP-large) {
+  //  Auto Desktop
+  @if $auto-grid {
+    $large_Auto: ();
+
+    .auto-grid {
+      @each $grid in $grids {
+        @for $i from 1 through $grid {
+          $width: $i / $grid;
+
+          @if 1 / 3 == $i / $grid {
+            @if contains($large_Auto, $width) == false {
+              %a-50-col-#{$width} {
+                width: 50%;
+              }
+              $large_Auto: append($large_Auto, $width);
+            }
+            .col-#{$i}-#{$grid} {
+              @extend %a-50-col-#{$width};
+            }
+          }
+
+          @if 1 / 4 == $i / $grid {
+            @if contains($large_Auto, $width) == false {
+              %a-33-col-#{$width} {
+                width: 33%;
+              }
+              $large_Auto: append($large_Auto, $width);
+            }
+            .col-#{$i}-#{$grid} {
+              @extend %a-33-col-#{$width};
+            }
+          }
+
+        }
+      }
+    }
+  }
+  // Auto Desktop end
+
+
+  .row {
+    $large: ();
+
+    @each $grid in $grids {
+      @for $i from 1 through $grid {
+        $width: $i / $grid;
+
+        @include the_extends($width, $large, "l" );
+
+        @include the_classes($i, $grid, $width, "l");
+
+      }
+    }
+
+    @if $offsets {
+      .col-l-push-reset, .col-l-pull-reset {
+        margin-left: none;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,46 @@
+
+// Function to check if value (width) has already been listed.
+@function contains($list, $var) {
+  $_out: false;
+  @each $item in $list { @if $item == $var { $_out: true; } }
+  @return $_out;
+}
+
+
+// This is to extend common grid widths e.g. .col-3-12, .col-4-16 { width: 25%; }.
+// As a result the css will be more condense.
+@mixin the_extends($width, $list, $BP) {
+
+  @if contains($list, $width) == false {
+    %col-#{$BP}-#{$width} {
+      width: percentage( $width );
+    }
+    %push-#{$BP}-#{$width} {
+      margin-left: percentage( $width );
+    }
+    %pull-#{$BP}-#{$width} {
+      margin-left: -(percentage( $width ));
+    }
+
+    $list: append($list, $width);
+  }
+
+}
+
+@mixin the_classes($i, $grid, $width, $BP) {
+
+  .col-#{$BP}-#{$i}-#{$grid} {
+    @extend %col-#{$BP}-#{$width};
+  }
+
+  @if $offsets {
+    .col-#{$BP}-push-#{$i}-#{$grid} {
+      @extend %push-#{$BP}-#{$width};
+    }
+    .col-#{$BP}-pull-#{$i}-#{$grid} {
+      $width: $i / $grid;
+      @extend %pull-#{$BP}-#{$width};
+    }
+  }
+
+}
