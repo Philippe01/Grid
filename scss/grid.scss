@@ -1,5 +1,22 @@
+/**
+* Grid
+*
+* Simple grid built with scss.
+*
+* Philippe Marr - philippe.marr@gmail.com
+*/
+
+
+/**
+* Grid setup
+*
+* $grids will inform the grid loops how many columns there should be and how many grids.
+* $gutter-width will inform the grid loops how big each column's gutters should be.
+*
+*/
+
 // Number of grids / grid columns.
-$grids: (12) !default;
+$grids: (8, 12, 16) !default;
 
 // Breakpoints
 $BP-large: 1025px !default;
@@ -7,20 +24,24 @@ $BP-medium: 770px !default;
 $BP-small: 600px !default;
 
 // Gutter width
-$gutter-width: 0.5% !default;
+$gutter-width: 10px !default;
 
 // Moblie First
-$moblie_first: true !default;
+$moblie_first: false !default;
 
 // Push and pull
 //
 // This will give you offsets left and right.
-$offsets: true !default;
+$offsets: false !default;
 
 // Automatic grid
 //
 // This will do some common grid width changes automatically. Use class '.auto-grid' on the '.row'
-$auto-grid: true !default;
+$auto-grid: false !default;
+
+
+
+
 
 
 * {
@@ -48,7 +69,7 @@ $auto-grid: true !default;
 }
 
 .row {
-  .col {
+  [class^="col-"] {
     float: left;
     padding: 0 $gutter-width / 2;
   }
